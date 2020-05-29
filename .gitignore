@@ -1,0 +1,14 @@
+*~
+Win32
+build/
+install/
+*.pyc
+
+/src/util/Settings.h
+/src/include/Settings.h
+/scripts/python/err.log
+/scripts/python/out.log
+/.clangd/
+/.dir-locals.el
+/compile_commands.json
+*~
