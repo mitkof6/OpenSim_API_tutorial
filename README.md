@@ -1,6 +1,8 @@
 # An OpenSim API introductory tutorial
 
-This is an OpenSim API introductory tutorial.
+This is an OpenSim API introductory tutorial. You can find the tutorial files in
+the `src/` folder along with the solutions. In the `doc/` folder, you can find a
+short presentation introducing C++ basics.
 
 ## Pre-requirements
 
@@ -8,13 +10,13 @@ This is an OpenSim API introductory tutorial.
 
 For Windows users please make sure to install the following:
 
-- Download OpenSim v4.1 [https://simtk.org/frs/index.php?group_id=91](link)
+- Install [OpenSim v4.1](https://simtk.org/frs/index.php?group_id=91)
 - Microsoft Visual Studio (MVS) and *C++ compiler*. Please note that during the
   installation of MVS the C++ compiler will not be installed by default. You
   have to install the Visual C++ build tools. No need to install any optional
   package such as Windows 10 SDK, etc.
-- Install CMake GUI [https://cmake.org/download/](link)
-- Install Rapid Environmental Editor [https://www.rapidee.com/en/download](link)
+- Install [CMake GUI](https://cmake.org/download/
+- Install [Rapid Environmental Editor](https://www.rapidee.com/en/download)
 - Optionally, you can install Python 3.x so that we can use OpenSim's API with
   Python. This will not be required for this example, but is very useful.
 
@@ -25,8 +27,7 @@ a different version of Python, then the only way to make OpenSim work is to
 build it from source.
 
 For convenience a pre-build version of OpenSim for Ubuntu 18.04 can be
-downloaded through the following URL:
-[https://sourceforge.net/projects/dependencies/files/opensim-core/opensim-core-4.1-ubunut18.04.tar.xz](pre-build)
+downloaded through the following URL: [pre-build](https://sourceforge.net/projects/dependencies/files/opensim-core/opensim-core-4.1-ubuntu-18.04.tar.xz/download)
 
 Extract and move the opensim-core folder to a convenient location. Then
 configure the environmental variables as follows:
@@ -51,5 +52,5 @@ To test the Python bindings try importing OpenSim in python3:
 
 ### Mac
 
-- Download OpenSim v4.1 [https://simtk.org/frs/index.php?group_id=91](link)
+- Install [OpenSim v4.1](https://simtk.org/frs/index.php?group_id=91)
 - Install g++, cmake and cmake-gui
