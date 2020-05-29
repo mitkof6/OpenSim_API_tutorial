@@ -15,7 +15,7 @@ For Windows users please make sure to install the following:
   installation of MVS the C++ compiler will not be installed by default. You
   have to install the Visual C++ build tools. No need to install any optional
   package such as Windows 10 SDK, etc.
-- Install [CMake GUI](https://cmake.org/download/
+- Install [CMake GUI](https://cmake.org/download/)
 - Install [Rapid Environmental Editor](https://www.rapidee.com/en/download)
 - Optionally, you can install Python 3.x so that we can use OpenSim's API with
   Python. This will not be required for this example, but is very useful.
