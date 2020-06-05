@@ -5,10 +5,18 @@ file(GLOB solution tutorial_solutions.cpp)
 set(target tutorial_02)
 add_executable(${target} ${tutorial})
 target_link_libraries(${target} ${OpenSim_LIBRARIES})
+set_target_properties(
+  ${target} PROPERTIES
+  FOLDER "02_run_simulation"
+)
 
 set(target solution_02)
 add_executable(${target} ${solution})
 target_link_libraries(${target} ${OpenSim_LIBRARIES})
+set_target_properties(
+  ${target} PROPERTIES
+  FOLDER "02_run_simulation"
+)
 
 set(ADDITIONAL_FILES
     "../01_build_model/cube.obj"

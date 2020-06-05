@@ -12,3 +12,4 @@ install/
 /.dir-locals.el
 /compile_commands.json
 *~
+/.vscode/

@@ -1,7 +1,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 # project
-project(OpenSimAPI VERSION 1.0.0)
+project(OpenSimAPI_Tutorials VERSION 1.0.0)
 
 # for emacs completion
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

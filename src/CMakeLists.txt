@@ -1,3 +1,5 @@
 add_subdirectory(01_build_model)
 add_subdirectory(02_run_simulation)
 add_subdirectory(03_perform_optimization)
+add_subdirectory(04_perturbation_force)
+add_subdirectory(05_eye_fixation_controller)

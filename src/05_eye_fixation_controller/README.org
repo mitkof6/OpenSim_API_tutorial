@@ -1,0 +1,39 @@
+#+TITLE: An Open-Source OpenSim Oculomotor Model for Kinematics and Dynamics Simulation
+#+AUTHOR: Konstantinos Filip, Dimitar Stanev, Konstantinos Moustakas
+#+EMAIL: stanev@ece.upatras.gr
+#+OPTIONS: email:t author:t date:nil toc:nil \n:nil num:nil
+#+LATEX_HEADER: \usepackage{fullpage}
+#+LATEX_HEADER: \usepackage{parskip}
+#+LATEX_HEADER: \usepackage{bm}
+#+LATEX_HEADER: \newcommand{\mat}[1]{\bm{#1}}
+#+LATEX_HEADER: \renewcommand*{\vec}[1]{\bm{#1}}
+
+* Description
+
+An open-source OpenSim oculomotor. The project is organized as follows:
+
+* Model Description
+
+- *v1* the baseline mode, which uses linear passive tissue function, has no
+  fixation controller, does not contain any constraints, thus can be used by any
+  version of OpenSim
+- *v2* left eye is coupled with the right eye using CoordinateCouplingConstraint
+- *v3* is program generated and contains the fixation controller, which is a
+  custom OpenSim::Controller that must be built as an OpenSim plugin
+
+* Acknowledge
+
+[1] K. Filip, D. Stanev, and K. Moustakas (2018). An Open-Source OpenSim
+Oculomotor Model for Kinematics and Dynamics Simulation, arXiv:1807.07332
+[physics.bio-ph].
+
+[2] SimTK project: https://simtk.org/projects/eye
+
+#+BEGIN_EXPORT html
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
+alt="Creative Commons License" style="border-width:0"
+src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is
+licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution
+4.0 International License</a>.
+#+END_EXPORT
