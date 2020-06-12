@@ -6,7 +6,7 @@ file(GLOB plugin_includes
   FixationControllerExports.h
   FixationController.h
   RegisterPlugin.h)
-file(GLOB test_sources Simulation.cpp)
+file(GLOB test_sources TestFixationController.cpp)
 
 # create plugin
 set(target_plugin FixationController)
@@ -18,7 +18,7 @@ set_target_properties(
 )
 
 # add executable
-set(target solution_05)
+set(target TestFixationController)
 add_executable(${target} ${test_sources})
 target_link_libraries(${target} ${OpenSim_LIBRARIES} ${target_plugin})
 set_target_properties(

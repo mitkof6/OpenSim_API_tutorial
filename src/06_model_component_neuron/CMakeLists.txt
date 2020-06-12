@@ -1,35 +1,33 @@
 # library
 file(GLOB plugin_sources
-  PerturbationForce.cpp
+  Neuron.cpp
   RegisterPlugin.cpp)
 file(GLOB plugin_includes
-  PerturbationForceExports.h
-  PerturbationForce.h
+  NeuronExports.h
+  Neuron.h
   RegisterPlugin.h)
-file(GLOB test_sources TestPerturbationForce.cpp)
+file(GLOB test_sources TestNeuron.cpp)
 
 # create plugin
-set(target_plugin PerturbationForce)
+set(target_plugin Neuron)
 add_library(${target_plugin} SHARED ${plugin_sources} ${plugin_includes})
 target_link_libraries (${target_plugin} ${OpenSim_LIBRARIES})
 set_target_properties(
   ${target_plugin} PROPERTIES
-  FOLDER "04_perturbation_force"
+  FOLDER "06_model_component_neuron"
 )
 
 # add executable
-set(target TestPerturbationForce)
+set(target TestNeuron)
 add_executable(${target} ${test_sources})
 target_link_libraries(${target} ${OpenSim_LIBRARIES} ${target_plugin})
 set_target_properties(
   ${target} PROPERTIES
-  FOLDER "04_perturbation_force"
+  FOLDER "06_model_component_neuron"
 )
 
 set(ADDITIONAL_FILES
-  "test_plugin.py"
-  "test_prescribed_force.py"
-  "tug_of_war.osim"
+  "visualize_sto.py"
 )
 
 foreach(dataFile ${ADDITIONAL_FILES})
