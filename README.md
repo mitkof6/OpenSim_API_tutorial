@@ -22,35 +22,30 @@ For Windows users please make sure to install the following:
 
 ### Linux
 
-This workaround works with Ubuntu 18.04. If you do not have the same OS and use
-a different version of Python, then the only way to make OpenSim work is to
-build it from source.
-
-For convenience a pre-build version of OpenSim for Ubuntu 18.04 can be
-downloaded through the following URL: [pre-build](https://sourceforge.net/projects/dependencies/files/opensim-core/opensim-core-4.1-ubuntu-18.04.tar.xz/download)
-
-Extract and move the opensim-core folder to a convenient location. Then
-configure the environmental variables as follows:
-
-```shell
-export OPENSIM_HOME=/path-to-filesystem/opensim-core
-export OpenSim_DIR=$OPENSIM_HOME/lib/cmake/OpenSim
-export LD_LIBRARY_PATH=$OPENSIM_HOME/lib:$LD_LIBRARY_PATH
-export PATH=$OPENSIM_HOME/bin:$PATH
-export PATH=$OPENSIM_HOME/libexec/simbody:$PATH
-```
-
-The Python bindings were build with Python 3.6. To install run:
-
-```shell
-cd $OPENSIM_HOME/lib/python3.6/site-packages
-python3 setup.py install --user
-```
-To test the Python bindings try importing OpenSim in python3:
-
-`python3 -c "import opensim"`
+Check the `build_opensim-core` and `BUILD_OPENSIM.md` if you want to build
+`opensim-core` from source on Ubuntu or on Linux with some modifications to the
+building script.
 
 ### Mac
 
 - Install [OpenSim v4.1](https://simtk.org/frs/index.php?group_id=91)
 - Install g++, cmake and cmake-gui
+
+# Acknowledge
+
+If you find this useful you can acknowledge it as follows:
+
+```bibtex
+@misc{opensim-api-tutorial,
+  author = {Stanev, Dimitar},
+  title = {An OpenSim API introductory tutorialSim},
+  year = {2020},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/mitkof6/OpenSim_API_tutorial}
+}
+```
+
+No worries, I do not mind not being acknowledged. Most of the things presented
+here are based on things available on SimTK and the user-guide. I hope I will
+have more time to improve and provide more examples.

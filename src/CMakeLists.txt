@@ -1,3 +1,4 @@
+add_subdirectory(00_exo)
 add_subdirectory(01_build_model)
 add_subdirectory(02_run_simulation)
 add_subdirectory(03_perform_optimization)
