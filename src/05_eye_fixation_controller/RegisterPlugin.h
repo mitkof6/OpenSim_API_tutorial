@@ -4,17 +4,18 @@
 #include "FixationControllerExports.h"
 
 extern "C" {
-    /**
-    * The purpose of this routine is to register all class types exported by
-    * the plugin library.
-    */
-    FixationController_API void RegisterPlugin();
+/**
+ * The purpose of this routine is to register all class types exported by
+ * the plugin library.
+ */
+FixationController_API void RegisterPlugin();
 }
 
 class dllObjectInstantiator {
-public:
+ public:
     dllObjectInstantiator();
-private:
+
+ private:
     void registerDllClasses();
 };
 

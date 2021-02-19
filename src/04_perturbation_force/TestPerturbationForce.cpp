@@ -38,6 +38,6 @@ int main(int argc, char* argv[]) {
         PAUSE;
         return -1;
     }
-	PAUSE;
+    PAUSE;
     return 0;
 }

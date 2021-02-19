@@ -11,8 +11,9 @@
  * the FixationController.h seems to solve the problem. This is not necessary
  * when using the fixation controller elsewhere (e.g., see Simulation.cpp).
  */
-#include <OpenSim/Simulation/Model/Actuator.h>
 #include "FixationController.h"
+
+#include <OpenSim/Simulation/Model/Actuator.h>
 #include <OpenSim/Simulation/Model/ExpressionBasedCoordinateForce.h>
 
 using namespace OpenSim;
@@ -29,10 +30,6 @@ void RegisterPlugin() {
     Object::RegisterType(FixationController());
 }
 
-dllObjectInstantiator::dllObjectInstantiator() {
-    registerDllClasses();
-}
+dllObjectInstantiator::dllObjectInstantiator() { registerDllClasses(); }
 
-void dllObjectInstantiator::registerDllClasses() {
-    RegisterPlugin();
-}
+void dllObjectInstantiator::registerDllClasses() { RegisterPlugin(); }

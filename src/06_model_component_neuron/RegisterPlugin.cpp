@@ -1,19 +1,15 @@
 #include "RegisterPlugin.h"
-#include <OpenSim/Common/Object.h>
+
 #include "Neuron.h"
+
+#include <OpenSim/Common/Object.h>
 
 using namespace OpenSim;
 
 static dllObjectInstantiator instantiator;
 
-void RegisterPlugin() {
-    Object::RegisterType(Neuron());
-}
+void RegisterPlugin() { Object::RegisterType(Neuron()); }
 
-dllObjectInstantiator::dllObjectInstantiator() {
-    registerDllClasses();
-}
+dllObjectInstantiator::dllObjectInstantiator() { registerDllClasses(); }
 
-void dllObjectInstantiator::registerDllClasses() {
-    RegisterPlugin();
-}
+void dllObjectInstantiator::registerDllClasses() { RegisterPlugin(); }

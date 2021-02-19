@@ -6,20 +6,22 @@
  *
  * @author Dimitar Stanev <jimstanev@gmail.com>
  */
-#include <iostream>
 #include <OpenSim/OpenSim.h>
+#include <iostream>
 
 using namespace std;
 using namespace OpenSim;
 using namespace SimTK;
 
 // Used to pause the flow of the program.
-#define PAUSE cout << endl << "press a key to continue ..." << endl; getchar();
+#define PAUSE                                                                  \
+    cout << endl << "press a key to continue ..." << endl;                     \
+    getchar();
 
 class HighJumpOptimization : public OptimizerSystem {
-public:
+ public:
     HighJumpOptimization(int numParameters, double endTime)
-        : OptimizerSystem(numParameters), endTime(endTime) {
+            : OptimizerSystem(numParameters), endTime(endTime) {
         // Setup model.
         model = Model("Dennis.osim");
 
@@ -47,7 +49,8 @@ public:
         }
     }
 
-    int objectiveFunc(const Vector &newControls, bool new_coefficients, Real& f) const {
+    int objectiveFunc(const Vector& newControls, bool new_coefficients,
+                      Real& f) const {
         // Initialization
         auto workingState = state;
         forceReporter->updForceStorage().reset(0);
@@ -59,8 +62,7 @@ public:
 #pragma region task_5a
         //*/
         int N = getNumParameters();
-        auto controlFunction = new PiecewiseConstantFunction(N,
-                                                             &timePoints[0],
+        auto controlFunction = new PiecewiseConstantFunction(N, &timePoints[0],
                                                              &newControls[0]);
         controller->prescribeControlForActuator("vastus", controlFunction);
         //*/
@@ -86,9 +88,7 @@ public:
 
         double maxValue = 0;
         for (int i = 0; i < CoMY.getSize(); i++) {
-            if (CoMY[i] > 0 && CoMY[i] > maxValue) {
-                maxValue = CoMY[i];
-            }
+            if (CoMY[i] > 0 && CoMY[i] > maxValue) { maxValue = CoMY[i]; }
         }
         f = -1 * maxValue;
         //*/
@@ -99,16 +99,18 @@ public:
         if (f < bestSolution) {
             bestSolution = f;
             cout << "objective evaluation: " << stepCount << endl
-                << "controls: " << newControls << endl
-                << "best: " << -f << std::endl;
+                 << "controls: " << newControls << endl
+                 << "best: " << -f << std::endl;
 
             model.print(model.getName() + "_Best_Par.osim");
-            manager.getStateStorage().print(model.getName() + "_States_Best_Par.sto");
+            manager.getStateStorage().print(model.getName() +
+                                            "_States_Best_Par.sto");
         }
         stepCount++;
         return 0;
     }
-private:
+
+ private:
     mutable Model model;
     mutable ForceReporter* forceReporter;
     mutable BodyKinematics* bodyKinematics;
@@ -151,15 +153,16 @@ void performHighJumpOptimization() {
     //*/
 #pragma endregion
 
-    cout << endl << "optimization finished" << endl
-        << "maximum CoM = " << -f << " m" << endl
-        << solution << endl;
+    cout << endl
+         << "optimization finished" << endl
+         << "maximum CoM = " << -f << " m" << endl
+         << solution << endl;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     try {
         performHighJumpOptimization();
-    } catch (exception &e) {
+    } catch (exception& e) {
         cout << typeid(e).name() << ": " << e.what() << endl;
         PAUSE;
         return -1;

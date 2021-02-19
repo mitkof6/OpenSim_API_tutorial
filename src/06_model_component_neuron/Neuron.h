@@ -26,12 +26,13 @@ class Neuron_API Neuron : public OpenSim::ModelComponent {
  public:
     OpenSim_DECLARE_PROPERTY(C, double, "Neuron membrane capacitance.");
     OpenSim_DECLARE_PROPERTY(R, double, "Neuron membrane resistance.");
-    OpenSim_DECLARE_PROPERTY(v_rest, double, "Neuron resting membrane potential.");
-	OpenSim_DECLARE_PROPERTY(v_threshold, double, "Neuron threshold.");
+    OpenSim_DECLARE_PROPERTY(v_rest, double,
+                             "Neuron resting membrane potential.");
+    OpenSim_DECLARE_PROPERTY(v_threshold, double, "Neuron threshold.");
 
     OpenSim_DECLARE_OUTPUT_FOR_STATE_VARIABLE(v);
 
-	OpenSim_DECLARE_INPUT(I, double, SimTK::Stage::Time, "Current");
+    OpenSim_DECLARE_INPUT(I, double, SimTK::Stage::Time, "Current");
 
     Neuron();
 
@@ -51,8 +52,9 @@ class Neuron_API Neuron : public OpenSim::ModelComponent {
         SimTK::Real getValue(const SimTK::State& s) const override;
         void handleEvent(SimTK::State& s, SimTK::Real accuracy,
                          bool& shouldTerminate) const override;
+
      private:
-		Neuron* neuron;
+        Neuron* neuron;
     };
 };
 } // namespace OpenSim

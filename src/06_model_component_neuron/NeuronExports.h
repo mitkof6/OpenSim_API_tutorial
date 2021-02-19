@@ -6,11 +6,11 @@
  * @author Dimitar Stanev <jimstanev@gmail.com>
  */
 #ifdef WIN32
-#   ifdef Neuron_EXPORTS
-#       define Neuron_API __declspec(dllexport)
-#   else
-#       define Neuron_API  __declspec(dllimport)
-#   endif
+#    ifdef Neuron_EXPORTS
+#        define Neuron_API __declspec(dllexport)
+#    else
+#        define Neuron_API __declspec(dllimport)
+#    endif
 #else
-#   define Neuron_API
+#    define Neuron_API
 #endif // WIN32

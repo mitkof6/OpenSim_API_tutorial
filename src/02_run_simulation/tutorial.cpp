@@ -9,15 +9,17 @@
  *
  * @author Dimitar Stanev <jimstanev@gmail.com>
  */
-#include <iostream>
 #include <OpenSim/OpenSim.h>
+#include <iostream>
 
 using namespace std;
 using namespace OpenSim;
 using namespace SimTK;
 
 // Used to pause the flow of the program.
-#define PAUSE cout << endl << "press a key to continue ..." << endl; getchar();
+#define PAUSE                                                                  \
+    cout << endl << "press a key to continue ..." << endl;                     \
+    getchar();
 
 void simulateModel() {
     // Load the model
@@ -29,7 +31,7 @@ void simulateModel() {
     /*/
     auto forceReporter = new ForceReporter();
     ...
-        
+
     auto bodyKinematics = new BodyKinematics();
     ...
     //*/
@@ -70,10 +72,10 @@ void simulateModel() {
     // bodyKinematics->printResults(model.getName());
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     try {
         simulateModel();
-    } catch (exception &e) {
+    } catch (exception& e) {
         cout << typeid(e).name() << ": " << e.what() << endl;
         PAUSE;
         return -1;

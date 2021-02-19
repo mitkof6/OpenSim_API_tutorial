@@ -11,15 +11,17 @@
  *
  * @author Dimitar Stanev <jimstanev@gmail.com>
  */
-#include <iostream>
 #include <OpenSim/OpenSim.h>
+#include <iostream>
 
 using namespace std;
 using namespace OpenSim;
 using namespace SimTK;
 
 // Used to pause the flow of the program.
-#define PAUSE cout << endl << "press a key to continue ..." << endl; getchar();
+#define PAUSE                                                                  \
+    cout << endl << "press a key to continue ..." << endl;                     \
+    getchar();
 
 void buildModel() {
     // Create a new OpenSim model.
@@ -32,8 +34,10 @@ void buildModel() {
 #pragma region task_1a
     //*/
     double pelvisMass = 30, pelvisSideLength = 0.2;
-    auto pelvisInertia = pelvisMass * Inertia::brick(Vec3(pelvisSideLength / 2));
-    auto pelvis = new OpenSim::Body("pelvis", pelvisMass, Vec3(0), pelvisInertia);
+    auto pelvisInertia =
+            pelvisMass * Inertia::brick(Vec3(pelvisSideLength / 2));
+    auto pelvis =
+            new OpenSim::Body("pelvis", pelvisMass, Vec3(0), pelvisInertia);
     auto pelvisMesh = new Mesh("cube.obj");
     pelvisMesh->setColor(Vec3(1, 0, 0));
     pelvisMesh->set_scale_factors(Vec3(pelvisSideLength));
@@ -41,9 +45,9 @@ void buildModel() {
     model.addBody(pelvis);
 
     Vec3 sliderOrientation(0, 0, SimTK::Pi / 2.);
-    auto sliderToGround = new SliderJoint("slider",
-                                          model.getGround(), Vec3(0), sliderOrientation,
-                                          *pelvis, Vec3(0), sliderOrientation);
+    auto sliderToGround = new SliderJoint("slider", model.getGround(), Vec3(0),
+                                          sliderOrientation, *pelvis, Vec3(0),
+                                          sliderOrientation);
     model.addJoint(sliderToGround);
     //*/
 #pragma endregion
@@ -53,17 +57,18 @@ void buildModel() {
 #pragma region task_1b
     //*/
     double linkMass = 10, linkLength = 0.5, linkRadius = 0.035;
-    auto linkInertia = linkMass * Inertia::cylinderAlongY(linkRadius, linkLength / 2);
+    auto linkInertia =
+            linkMass * Inertia::cylinderAlongY(linkRadius, linkLength / 2);
     auto thigh = new OpenSim::Body("thigh", linkMass, Vec3(0), linkInertia);
-    auto linkGeometry = new Cylinder(linkRadius, linkLength/2.);
+    auto linkGeometry = new Cylinder(linkRadius, linkLength / 2.);
     linkGeometry->setColor(Vec3(0, 1, 0));
     thigh->attachGeometry(linkGeometry);
     model.addBody(thigh);
 
     Vec3 linkDistalPoint(0, -linkLength / 2., 0);
     Vec3 linkProximalPoint(0, linkLength / 2., 0);
-    auto hip = new PinJoint("hip", *pelvis, Vec3(0), Vec3(0),
-                            *thigh, linkProximalPoint, Vec3(0));
+    auto hip = new PinJoint("hip", *pelvis, Vec3(0), Vec3(0), *thigh,
+                            linkProximalPoint, Vec3(0));
     model.addJoint(hip);
     //*/
 #pragma endregion
@@ -76,8 +81,8 @@ void buildModel() {
     shank->attachGeometry(linkGeometry->clone());
     model.addBody(shank);
 
-    auto knee = new PinJoint("knee", *thigh, linkDistalPoint, Vec3(0),
-                             *shank, linkProximalPoint, Vec3(0));
+    auto knee = new PinJoint("knee", *thigh, linkDistalPoint, Vec3(0), *shank,
+                             linkProximalPoint, Vec3(0));
     model.addJoint(knee);
     //*/
 #pragma endregion
@@ -120,19 +125,17 @@ void buildModel() {
 
     double hipRange[2] = {110, -90};
     double hipStiff[2] = {20, 20}, hipDamping = 5, hipTransition = 10;
-    auto hipLimitForce = new CoordinateLimitForce(hipCoord.getName(), hipRange[0],
-                                                  hipStiff[0], hipRange[1],
-                                                  hipStiff[1], hipDamping,
-                                                  hipTransition);
+    auto hipLimitForce = new CoordinateLimitForce(
+            hipCoord.getName(), hipRange[0], hipStiff[0], hipRange[1],
+            hipStiff[1], hipDamping, hipTransition);
     hipLimitForce->setName("hip_flexion_limit_force");
     model.addForce(hipLimitForce);
 
     double kneeRange[2] = {-10, -140};
     double kneeStiff[2] = {50, 50}, kneeDamping = 2, kneeTransition = 10;
-    auto kneeLimitForce = new CoordinateLimitForce(kneeCoord.getName(), kneeRange[0],
-                                                   kneeStiff[0], kneeRange[1],
-                                                   kneeStiff[1], kneeDamping,
-                                                   kneeTransition);
+    auto kneeLimitForce = new CoordinateLimitForce(
+            kneeCoord.getName(), kneeRange[0], kneeStiff[0], kneeRange[1],
+            kneeStiff[1], kneeDamping, kneeTransition);
     kneeLimitForce->setName("knee_flexion_limit_force");
     model.addForce(kneeLimitForce);
     //*/
@@ -142,8 +145,8 @@ void buildModel() {
     // beneath the pelvis (the Y-axis points upwards).
 #pragma region task_2b
     //*/
-    auto constraint = new PointOnLineConstraint(model.getGround(), Vec3(0, 1, 0),
-                                                Vec3(0), *shank, linkDistalPoint);
+    auto constraint = new PointOnLineConstraint(
+            model.getGround(), Vec3(0, 1, 0), Vec3(0), *shank, linkDistalPoint);
     constraint->setName("point_on_line_constraint");
     model.addConstraint(constraint);
     //*/
@@ -162,12 +165,10 @@ void buildModel() {
     auto foot = new ContactSphere(footRadius, linkDistalPoint, *shank, "foot");
 
     double stiffness = 1e8, dissipation = 5, friction[3] = {0.0, 0.0, 1};
-    auto contactParams = new OpenSim::HuntCrossleyForce::ContactParameters(stiffness,
-                                                                           dissipation,
-                                                                           friction[0],
+    auto contactParams = new OpenSim::HuntCrossleyForce::ContactParameters(
+            stiffness, dissipation, friction[0],
 
-                                                                           friction[1],
-                                                                           friction[2]);
+            friction[1], friction[2]);
     contactParams->addGeometry("floor");
     contactParams->addGeometry("foot");
     auto contactForce = new OpenSim::HuntCrossleyForce(contactParams);
@@ -188,7 +189,8 @@ void buildModel() {
 #pragma region task_3a
     //*/
     double Fmax = 5000, optFibLen = 0.55, tendonSlackLen = 0.25, pennAng = 0;
-    auto vastus = new Thelen2003Muscle("vastus", Fmax, optFibLen, tendonSlackLen, pennAng);
+    auto vastus = new Thelen2003Muscle("vastus", Fmax, optFibLen,
+                                       tendonSlackLen, pennAng);
     vastus->addNewPathPoint("origin", *thigh, Vec3(linkRadius, 0.10, 0));
     vastus->addNewPathPoint("insertion", *shank, Vec3(linkRadius, 0.10, 0));
     model.addForce(vastus);
@@ -223,10 +225,10 @@ void buildModel() {
     model.print(model.getName() + ".osim");
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     try {
         buildModel();
-    } catch (exception &e) {
+    } catch (exception& e) {
         cout << typeid(e).name() << ": " << e.what() << endl;
         PAUSE;
         return -1;

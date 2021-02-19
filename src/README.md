@@ -14,3 +14,5 @@
    custom controller as a plugin and use it in the GUI or API to
    control the excitation of the eye's muscles. Based on:
    https://gitlab.com/vvr/upat_eye_model
+6. *05_model_component_neuron*: demonstrates how to create a leaky-integrate and
+   fire neuron using OpenSim's ModelComponent facilities.

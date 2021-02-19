@@ -11,15 +11,17 @@
  *
  * @author Dimitar Stanev <jimstanev@gmail.com>
  */
-#include <iostream>
 #include <OpenSim/OpenSim.h>
+#include <iostream>
 
 using namespace std;
 using namespace OpenSim;
 using namespace SimTK;
 
 // Used to pause the flow of the program.
-#define PAUSE cout << endl << "press a key to continue ..." << endl; getchar();
+#define PAUSE                                                                  \
+    cout << endl << "press a key to continue ..." << endl;                     \
+    getchar();
 
 void buildModel() {
     // Create a new OpenSim model.
@@ -32,10 +34,9 @@ void buildModel() {
 #pragma region task_1a
     /*/
     double pelvisMass = 30, pelvisSideLength = 0.2;
-    auto pelvisInertia = pelvisMass * Inertia::brick(Vec3(pelvisSideLength / 2));
-    auto pelvis = new OpenSim::Body(...);
-    auto pelvisMesh = new Mesh("cube.obj");
-    pelvisMesh->setColor(Vec3(1, 0, 0));
+    auto pelvisInertia = pelvisMass * Inertia::brick(Vec3(pelvisSideLength /
+    2)); auto pelvis = new OpenSim::Body(...); auto pelvisMesh = new
+    Mesh("cube.obj"); pelvisMesh->setColor(Vec3(1, 0, 0));
     pelvisMesh->set_scale_factors(Vec3(pelvisSideLength));
     pelvis->attachGeometry(pelvisMesh);
     model.addBody(pelvis);
@@ -51,9 +52,9 @@ void buildModel() {
 #pragma region task_1b
     /*/
     double linkMass = 10, linkLength = 0.5, linkRadius = 0.035;
-    auto linkInertia = linkMass * Inertia::cylinderAlongY(linkRadius, linkLength / 2);
-    auto thigh = new OpenSim::Body("thigh", linkMass, Vec3(0), linkInertia);
-    auto linkGeometry = new Cylinder(linkRadius, linkLength/2.);
+    auto linkInertia = linkMass * Inertia::cylinderAlongY(linkRadius, linkLength
+    / 2); auto thigh = new OpenSim::Body("thigh", linkMass, Vec3(0),
+    linkInertia); auto linkGeometry = new Cylinder(linkRadius, linkLength/2.);
     linkGeometry->setColor(Vec3(0, 1, 0));
     thigh->attachGeometry(linkGeometry);
     model.addBody(thigh);
@@ -112,9 +113,8 @@ void buildModel() {
     /*/
     double hipRange[2] = {110, -90};
     double hipStiff[2] = {20, 20}, hipDamping = 5, hipTransition = 10;
-    auto hipLimitForce = new CoordinateLimitForce(hipCoord.getName(), hipRange[0],
-                                                  hipStiff[0], hipRange[1],
-                                                  hipStiff[1], hipDamping,
+    auto hipLimitForce = new CoordinateLimitForce(hipCoord.getName(),
+    hipRange[0], hipStiff[0], hipRange[1], hipStiff[1], hipDamping,
                                                   hipTransition);
     hipLimitForce->setName("hip_flexion_limit_force");
     model.addForce(hipLimitForce);
@@ -198,12 +198,12 @@ void buildModel() {
     model.print(model.getName() + ".osim");
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     try {
         buildModel();
         // simulateModel();
         // performHighJumpOptimization();
-    } catch (exception &e) {
+    } catch (exception& e) {
         cout << typeid(e).name() << ": " << e.what() << endl;
         PAUSE;
         return -1;
